@@ -7,6 +7,7 @@ import "components/InterviewerList.scss"
 // 2. setInterviewer (a function that accepts interviewer id)
 // 3. interviewer (the id of the currently selected interviewer)
 
+// define the setInterviewer function in this component and then pass it to InterviewerListItem while iterating over the array
 export default function InterviewerList(props) {
 
   const interviewers = props.interviewers.map((interviewer) => {
@@ -16,7 +17,7 @@ export default function InterviewerList(props) {
         name={interviewer.name}
         avatar={interviewer.avatar}
         selected={interviewer.id === props.interviewer}
-        setInterviewer={props.setInterviewer}
+        setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     )
   });
