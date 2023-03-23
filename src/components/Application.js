@@ -35,7 +35,7 @@ const interviewers = [
 export default function Application(props) {
   // store the day state in the Application component
   const [day, setDay] = useState("Monday")
-  const [interviewer, setInterviewer] = useState("Sylvia Palmer")
+  const [interviewer, setInterviewer] = useState("")
 
   return (
     <main className="layout">
