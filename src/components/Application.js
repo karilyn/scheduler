@@ -51,8 +51,8 @@ export default function Application(props) {
         {/* When we call the setDay action, it changes the day state. When we change the state, the <Application> renders and passes the new day to the <DayList>.  */}
         <DayList
           days={days}
-          day={day}
-          setDay={setDay}
+          value={day}
+          onChange={setDay}
         />
         </nav>
         <img
@@ -64,8 +64,8 @@ export default function Application(props) {
       <section className="schedule">
         <InterviewerList
           interviewers={interviewers}
-          interviewer={interviewer}
-          setInterviewer={setInterviewer}
+          value={interviewer}
+          onChange={setInterviewer}
         />
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
       </section>
