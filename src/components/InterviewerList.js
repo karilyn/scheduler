@@ -1,6 +1,6 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
-import "components/InterviewerList.scss"
+import "./InterviewerList.scss"
 
 // InterviewerList receives three props:
 // 1. interviewers (an array)
