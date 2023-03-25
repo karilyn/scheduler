@@ -148,11 +148,7 @@ storiesOf("Appointment", module)
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
-  .add("Empty", () => (
-    <Empty
-      onAdd={action("onAdd")}
-    />
-  ))
+  .add("Empty", () => <Empty onAdd={action("onAdd")} />)
   .add("Show", () => (
     <Show
       onEdit={action("onEdit")}
@@ -161,10 +157,11 @@ storiesOf("Appointment", module)
   ))
   .add("Confirm", () => (
     <Confirm
-      message=""
+      message="Delete the appointment?"
       onConfirm={action("onConfirm")}
       onCancel={action("onCancel")}
     />
   ))
-  .add("Status", () => <Status message="" />)
+  .add("Status", () => <Status message="Deleting" />)
+  .add("Error", () => <Error message="Could not delete appointment" onClose={action("onClose")} />)
 
