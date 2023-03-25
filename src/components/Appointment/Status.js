@@ -9,7 +9,7 @@ export default function Status(props) {
         alt="Loading"
         message={props.message}
       />
-      <h1 className="text--semi-bold">Deleting</h1>
+      <h1 className="text--semi-bold">{props.message}</h1>
     </main>
   )
 }
