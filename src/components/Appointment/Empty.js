@@ -1,4 +1,4 @@
-import React, { className } from "react";
+import React from "react";
 
 export default function Empty(props) {
   return (

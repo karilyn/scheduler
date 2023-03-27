@@ -1,4 +1,4 @@
-import React, { className } from "react";
+import React from "react";
 
 // accepts four props:
 // 1) student:String
