@@ -31,16 +31,64 @@ const interviewers = [
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
 
+const appointments = {
+  "1": {
+    id: 1,
+    time: "12pm",
+  },
+  "2": {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer:{
+        id: 3,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      }
+    }
+  },
+  "3": {
+    id: 3,
+    time: "2pm",
+  },
+  "4": {
+    id: 4,
+    time: "3pm",
+    interview: {
+      student: "Archie Andrews",
+      interviewer:{
+        id: 4,
+        name: "Cohana Roy",
+        avatar: "https://i.imgur.com/FK8V841.jpg",
+      }
+    }
+  },
+  "5": {
+    id: 5,
+    time: "4pm",
+  }
+};
+
 
 export default function Application(props) {
   // store the day state in the Application component
   const [day, setDay] = useState("Monday")
   const [interviewer, setInterviewer] = useState("")
 
+  const appointmentArray = Object.values(appointments).map((appointment) => {
+    return (
+      <Appointment
+      key={appointment.id}
+        {...appointment}
+      />
+    )
+  });
+
+
   return (
     <main className="layout">
       <section className="sidebar">
-        {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
         <img
           className="sidebar--centered"
           src="images/logo.png"
@@ -62,12 +110,13 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        <InterviewerList
+        {appointmentArray}
+        <Appointment key="last" time="5pm" />
+        {/* <InterviewerList
           interviewers={interviewers}
           value={interviewer}
           onChange={setInterviewer}
-        />
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        /> */}
       </section>
 
     </main>
