@@ -6,23 +6,6 @@ import DayList from "./DayList";
 import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
 
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
@@ -76,6 +59,7 @@ export default function Application(props) {
   // store the day state in the Application component
   const [day, setDay] = useState("Monday")
   const [interviewer, setInterviewer] = useState("")
+  const [days, setDays] = useState([]);
 
   const appointmentArray = Object.values(appointments).map((appointment) => {
     return (
@@ -85,6 +69,20 @@ export default function Application(props) {
       />
     )
   });
+
+  useEffect(() => {
+    axios.get('/api/days', { proxy:
+      {
+        host: 'localhost',
+        port: 8001
+      }
+    })
+   .then(res => {
+      console.log(res.data)
+      setDays([...res.data])
+    })
+  }, []);
+
 
 
   return (
