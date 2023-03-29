@@ -1,5 +1,5 @@
 import React from "react";
-
+import { getAppointmentsForDay } from "helpers/selectors";
 // accepts four props:
 // 1) student:String
 // 2) interviewer:Object
@@ -10,10 +10,10 @@ export default function Show(props) {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        <h2 className="text--regular">Lydia Miller-Jones</h2>
+        <h2 className="text--regular">{props.student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
-          <h3 className="text--regular">Sylvia Palmer</h3>
+          <h3 className="text--regular">{props.interviewer.name}</h3>
         </section>
       </section>
       <section className="appointment__card-right">
