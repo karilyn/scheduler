@@ -12,3 +12,22 @@ export function getAppointmentsForDay(state, day) {
   });
   return availAppointments;
 }
+
+// Return an interview object which matches
+// the partial interview provided
+export function getInterview(state, interview) {
+  // return null if there's no interview
+  if (!interview) {
+    return null;
+  }
+  // the interviewObj comes from the interviewer object found at the key matching the interviewer id in the interview
+  const interviewerObj = state.interviewers[interview.interviewer];
+
+  const interviewObj = {
+    student: interview.student,
+    interviewer: interviewerObj
+  };
+  // return the new interview object
+  return interviewObj;
+
+}
