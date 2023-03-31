@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import axios from "axios";
+import axios from 'axios';
 
 import "components/Application.scss";
 import DayList from "./DayList";
@@ -18,7 +18,7 @@ export default function Application(props) {
   // only using setDay to update the DayList component
   const setDay = (day) => setState({ ...state, day });
   // const setDays = (days) => setState(prev => ({ ...prev, days }));
-  console.log(state.interviewers)
+  // console.log(state.interviewers)
 
 
   // const dailyAppointments = getAppointmentsForDay(state, state.day);
