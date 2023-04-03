@@ -42,11 +42,11 @@ export function getInterviewersForDay(state, day) {
   if (typeof filteredDay.interviewers === "undefined") {
     return [];
   }
-  console.log("filtered day: ", filteredDay);
-  console.log("state: ", state);
+  // console.log("filtered day: ", filteredDay);
+  // console.log("state: ", state);
   let interviewers = [];
 
-  
+
   let availInterviewers = [];
   filteredDay.interviewers.forEach(id => {
     availInterviewers.push(state.interviewers[id])
