@@ -4,11 +4,11 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form(props) {
-  // keep track of the name
+  // keep track of the name and interviewer state
   const [currentStudent, setStudent] = useState(props.student || "")
   const [currentInterviewer, setInterviewer] = useState(props.interviewer || null)
 
-  // helper function to clear fields
+  // helper function to reset input fields
   function reset() {
     setStudent("")
     setInterviewer(null)
@@ -18,6 +18,14 @@ export default function Form(props) {
     reset();
     props.onCancel()
   }
+
+  function save() {
+    props.onSave(currentStudent, currentInterviewer)
+  }
+
+  // function delete() {
+  //   props.onDelete()
+  // }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -41,7 +49,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={props.onSave}>Save</Button>
+          <Button confirm onClick={save}>Save</Button>
         </section>
       </section>
     </main>
