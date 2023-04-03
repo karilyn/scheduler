@@ -1,10 +1,6 @@
 import React from "react";
-import { getAppointmentsForDay } from "helpers/selectors";
-// accepts four props:
-// 1) student:String
-// 2) interviewer:Object
-// 3) onEdit
-// 4) onDelete
+// import { getAppointmentsForDay } from "helpers/selectors";
+
 
 export default function Show(props) {
   console.log(props)
