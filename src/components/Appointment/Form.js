@@ -23,8 +23,8 @@ export default function Form(props) {
     props.onSave(currentStudent, currentInterviewer)
   }
 
-  // function delete() {
-  //   props.onDelete()
+  // function remove() {
+  //   props.onDelete(currentStudent, currentInterviewer)
   // }
 
   return (
