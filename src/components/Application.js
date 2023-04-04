@@ -38,11 +38,29 @@ export default function Application(props) {
       .put(`/api/appointments/${id}`, {
       interview
     })
-    .then((res) => setState({
+      .then((res) => setState({
       ...state,
       appointments
     }));
+  }
 
+  function deleteInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios
+      .delete(`/api/appointments/${id}`, {
+        interview
+    })
+      .then((res) => setState({
+      ...state,
+      appointments
+    }));
   }
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -64,6 +82,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        deleteInterview={deleteInterview}
       />
     );
   });
@@ -108,11 +127,6 @@ export default function Application(props) {
       <section className="schedule">
         {schedule}
         <Appointment key="last" time="5pm" />
-        {/* <InterviewerList
-          interviewers={interviewers}
-          value={interviewer}
-          onChange={setInterviewer}
-        /> */}
       </section>
 
     </main>
