@@ -19,6 +19,7 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT";
 
 
   function save(name, interviewer) {
@@ -40,15 +41,24 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-
     props
       .deleteInterview(props.id, interview)
       .then(() => transition(EMPTY))
-
-
-
-
   }
+
+  // function edit(name, interviewer) {
+  //   const interview = {
+  //     student: name,
+  //     interviewer
+  //   };
+  //   // new interview object gets passed to editInterview function
+  //   props
+  //     .editInterview(props.id, interview)
+  //     .then(() => transition(SAVING))
+  //   // returns a promise which has a callback
+  //     .then(() => transition(SHOW))
+  //   console.log("editInterview:", props.id, interview)
+  // }
 
 
 
@@ -60,18 +70,32 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EMPTY && (
+        <Empty
+          onAdd={() => transition(CREATE)}
+        />
+      )}
       {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
           onCancel={() => back()}
+          onSave={save}
+        />
+      )}
+      {mode === EDIT && props.interview && (
+        <Form
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onCancel={() => transition(SHOW)}
           onSave={save}
         />
       )}

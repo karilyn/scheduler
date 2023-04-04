@@ -23,9 +23,7 @@ export default function Form(props) {
     props.onSave(currentStudent, currentInterviewer)
   }
 
-  // function remove() {
-  //   props.onDelete(currentStudent, currentInterviewer)
-  // }
+
 
   return (
     <main className="appointment__card appointment__card--create">
