@@ -40,15 +40,11 @@ export default function Appointment(props) {
     console.log("bookInterview:", props.id, interview)
   }
 
-  function remove(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
+  function remove(id) {
     transition(DELETING, true);
 
     props
-      .deleteInterview(props.id, interview)
+      .deleteInterview(props.id)
       .then(() => transition(EMPTY))
       .catch((error) => transition(ERROR_DELETE, true))
   }
