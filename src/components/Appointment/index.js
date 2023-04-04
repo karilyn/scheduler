@@ -1,12 +1,13 @@
 import React from "react";
 import './styles.scss'
+import useVisualMode from "hooks/useVisualMode";
+
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
-import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
-
+import Confirm from "./Confirm";
 
 
 
@@ -16,6 +17,8 @@ export default function Appointment(props) {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const DELETING = "DELETING";
+  const CONFIRM = "CONFIRM";
 
 
   function save(name, interviewer) {
@@ -23,14 +26,31 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-
     transition(SAVING);
     // new interview object gets passed to bookInterview function
-    props.bookInterview(props.id, interview)
-    .then(() => transition(SHOW))
+    props
+      .bookInterview(props.id, interview)
+    // returns a promise which has a callback
+      .then(() => transition(SHOW))
     console.log("bookInterview:", props.id, interview)
+  }
+
+  function remove(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    props
+      .deleteInterview(props.id, interview)
+      .then(() => transition(EMPTY))
+
+
+
 
   }
+
+
 
   // import functions used to transition to different visual modes and set mode to SHOW or EMPTY depending on if interview is booked
   const { mode, transition, back } = useVisualMode(
@@ -45,6 +65,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (
@@ -59,6 +80,19 @@ export default function Appointment(props) {
           message="Saving appointment"
         />
       )}
+      {mode === CONFIRM && (
+        <Confirm
+          onCancel={() => transition(SHOW)}
+          onConfirm={remove}
+          message="Are you sure you want to delete this appointment?"
+        />
+      )}
+      {mode === DELETING && (
+        <Status
+          message="Deleting appointment"
+        />
+      )
+      }
 
 
     </article>
