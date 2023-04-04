@@ -8,6 +8,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 
 
@@ -20,6 +21,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE"
 
 
   function save(name, interviewer) {
@@ -33,6 +36,7 @@ export default function Appointment(props) {
       .bookInterview(props.id, interview)
     // returns a promise which has a callback
       .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVE, true))
     console.log("bookInterview:", props.id, interview)
   }
 
@@ -41,24 +45,13 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    transition(DELETING, true);
+
     props
       .deleteInterview(props.id, interview)
       .then(() => transition(EMPTY))
+      .catch((error) => transition(ERROR_DELETE, true))
   }
-
-  // function edit(name, interviewer) {
-  //   const interview = {
-  //     student: name,
-  //     interviewer
-  //   };
-  //   // new interview object gets passed to editInterview function
-  //   props
-  //     .editInterview(props.id, interview)
-  //     .then(() => transition(SAVING))
-  //   // returns a promise which has a callback
-  //     .then(() => transition(SHOW))
-  //   console.log("editInterview:", props.id, interview)
-  // }
 
 
 
@@ -115,8 +108,17 @@ export default function Appointment(props) {
         <Status
           message="Deleting appointment"
         />
-      )
-      }
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+          message="Could not save appointment."
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Could not delete appointment"
+        />
+      )}
 
 
     </article>
