@@ -1,11 +1,14 @@
+/* Returns an array of appointments for a given day */
 export function getAppointmentsForDay(state, day) {
   if (!state.days || state.days.length === 0) {
     return [];
   }
+  // filter by day
   const filteredDay = state.days.filter(d => d.name === day)[0];
   if (!filteredDay) {
     return [];
   }
+  /* loop through filteredDay array find the associated apointments for that day */
   let availAppointments = [];
   filteredDay.appointments.forEach(id => {
     availAppointments.push(state.appointments[id])
@@ -13,8 +16,7 @@ export function getAppointmentsForDay(state, day) {
   return availAppointments;
 }
 
-// Return an interview object which matches
-// the partial interview provided
+/* Return an interview object which matches the partial interview provided */
 export function getInterview(state, interview) {
   // return null if there's no interview
   if (!interview) {
