@@ -1,7 +1,6 @@
 import React from "react";
 import './styles.scss'
 import useVisualMode from "hooks/useVisualMode";
-
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -9,8 +8,6 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-
-
 
 export default function Appointment(props) {
   // visual mode constants used to setMode
@@ -23,7 +20,6 @@ export default function Appointment(props) {
   const EDIT = "EDIT";
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE"
-
 
   function save(name, interviewer) {
     const interview = {
@@ -48,8 +44,6 @@ export default function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch((error) => transition(ERROR_DELETE, true))
   }
-
-
 
   // import functions used to transition to different visual modes and set mode to SHOW or EMPTY depending on if interview is booked
   const { mode, transition, back } = useVisualMode(
@@ -102,7 +96,7 @@ export default function Appointment(props) {
       )}
       {mode === DELETING && (
         <Status
-          message="Deleting appointment"
+          message="Deleting appointment."
         />
       )}
       {mode === ERROR_SAVE && (
@@ -112,11 +106,9 @@ export default function Appointment(props) {
       )}
       {mode === ERROR_DELETE && (
         <Error
-          message="Could not delete appointment"
+          message="Could not delete appointment."
         />
       )}
-
-
     </article>
   )
 }
