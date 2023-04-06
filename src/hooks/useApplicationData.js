@@ -1,6 +1,7 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
-import reducer, { SET_APPLICATION_DATA, SET_DAY, SET_INTERVIEW, updateSpots } from "reducers/reducers";
+import { reducer, updateSpots } from "reducers/reducers";
+import { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW } from "reducers/actions"
 
 
 // this hook controls the data management
@@ -49,8 +50,6 @@ export default function useApplicationData() {
     };
     // call the updateSpots function to get a new dayObj copy and then update the st
     const days = updateSpots(state, appointments)
-
-
     // make the put request and then update the state
     return axios
       .put(`/api/appointments/${id}`, {
