@@ -6,29 +6,22 @@ start by finding the specific day when the names match, then
 loop over the appointmentKeys in appointments
 */
 export function updateSpots(state, appointments) {
-  // console.log("appointments: ", appointments)
   return state.days.map((dayObj) => {
-    // console.log("state.days", state.days)
     if (state.day === dayObj.name) {
       let spotsRemaining = 0;
       for (const appointmentKey in appointments) {
         let appointment = appointments[appointmentKey];
         // add to spotsRemaining if the appointment.id is in dayObj's appointments and it's null
-        console.log("appointment ", appointment)
-
         if (
           dayObj.appointments.includes(appointment.id) &&
           !appointment.interview
         ) {
-          // console.log("appointment  found:", appointment)
           spotsRemaining++;
         }
       }
       // return a new dayObject copy with an updated spots value
-      // console.log("spots remaining: ", spotsRemaining)
       return { ...dayObj, spots: spotsRemaining };
     }
-    // console.log("dayObj: ", dayObj)
     return dayObj;
   });
 }
@@ -46,7 +39,7 @@ export function reducer(state, action) {
         ...action.value,
       };
     case SET_INTERVIEW:
-      console.log(action);
+      // create a copy of selected appointment by id with an optimistic new state
       const appointment = {
         ...state.appointments[action.value.id],
         interview: action.value.interview && { ...action.value.interview },
@@ -55,8 +48,9 @@ export function reducer(state, action) {
         ...state.appointments,
         [action.value.id]: appointment,
       };
+      // call the updateSpots function to get a new dayObj copy and then update the st
       const days = updateSpots(state, appointments);
-      console.log("days: ", days)
+      console.log('days: ', days);
       return {
         ...state,
         days,
