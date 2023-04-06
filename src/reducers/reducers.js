@@ -1,6 +1,4 @@
-export const SET_DAY = "SET_DAY";
-export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-export const SET_INTERVIEW = "SET_INTERVIEW";
+import { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW } from "./actions";
 
 /* Function to increment or decrement spots remaining
 We will return the result of mapping over each dayObj in state.days
@@ -30,7 +28,7 @@ export function updateSpots(state, appointments) {
   })
 }
 
-export default function reducer(state, action) {
+export function reducer (state, action) {
   switch (action.type) {
     case SET_DAY:
       return {
@@ -63,3 +61,4 @@ export default function reducer(state, action) {
       );
   }
 }
+
