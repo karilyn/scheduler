@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InterviewerListItem from './InterviewerListItem';
 import './InterviewerList.scss';
+
 
 // define the setInterviewer function in this component and then pass it to InterviewerListItem while iterating over the array
 export default function InterviewerList(props) {
@@ -15,6 +17,10 @@ export default function InterviewerList(props) {
       />
     );
   });
+
+  InterviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired
+  }
 
   return (
     <section className='interviewers'>
