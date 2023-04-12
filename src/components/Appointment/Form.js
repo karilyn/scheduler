@@ -9,6 +9,8 @@ export default function Form(props) {
   const [currentInterviewer, setInterviewer] = useState(
     props.interviewer || null
   );
+  const [error, setError] = useState("");
+
 
   // helper function to reset input fields
   function reset() {
@@ -21,9 +23,18 @@ export default function Form(props) {
     props.onCancel();
   }
 
-  function save() {
+  function validate() {
+    if (currentStudent === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    if (currentInterviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
     props.onSave(currentStudent, currentInterviewer);
   }
+
 
   return (
     <main className='appointment__card appointment__card--create'>
@@ -36,8 +47,10 @@ export default function Form(props) {
             type='text'
             placeholder='Enter Student Name'
             onChange={(event) => setStudent(event.target.value)}
+            data-testid='student-name-input'
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
           value={currentInterviewer}
@@ -49,7 +62,7 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={save}>
+          <Button confirm onClick={validate}>
             Save
           </Button>
         </section>
