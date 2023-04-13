@@ -12,8 +12,6 @@ afterEach(cleanup);
 /*
   First test is that it simply renders a React Component
 */
-describe('Appointment', () => {
-  it('renders without crashing', () => {
-    render(<Appointment />);
-  });
+it("renders without crashing", () => {
+  render(<Appointment />);
 });
