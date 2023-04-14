@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react';
 import axios from 'axios';
-import { reducer } from 'reducers/reducers';
+import { reducer } from 'reducers/application';
 import { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW } from 'reducers/actions';
 
 // this hook controls the data management
