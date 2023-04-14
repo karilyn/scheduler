@@ -50,7 +50,6 @@ export function reducer(state, action) {
       };
       // call the updateSpots function to get a new dayObj copy and then update the st
       const days = updateSpots(state, appointments);
-      console.log('days: ', days);
       return {
         ...state,
         days,
