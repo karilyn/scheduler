@@ -54,9 +54,10 @@ const fixtures = {
   },
 };
 
-// mocking the get function
+
 export default {
   defaults: { baseURL: '' },
+  // mocking the GET request
   get: jest.fn((url) => {
     if (url === '/api/days') {
       return Promise.resolve({
@@ -84,4 +85,24 @@ export default {
       });
     }
   }),
+
+  // mocking the PUT request
+  put: jest.fn(url => {
+    return Promise.resolve({
+      status: 204,
+      statusText: 'No Content'
+    });
+  }),
+
+  // mocking the PUT request
+  delete: jest.fn(url => {
+    return Promise.resolve({
+      status: 204,
+      statusText: 'No Content'
+    });
+  })
+
+
 };
+
+
