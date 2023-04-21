@@ -1,4 +1,4 @@
-import { SET_APPLICATION_DATA, SET_INTERVIEW } from './actions';
+import { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW } from './actions';
 
 /* Function to increment or decrement spots remaining
 We will return the result of mapping over each dayObj in state.days
