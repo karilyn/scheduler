@@ -20,23 +20,20 @@ jobs:
       - run: npm test
 
   deploy:
-  machine:
-    enabled: true
+    machine:
+      enabled: true
 
-  working_directory: ~/client
+    working_directory: ~/client
 
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "da:8e:c9:e6:33:bc:77:20:8c:bc:b6:1d:6e:c8:d2:ee"
-    - checkout
-    - run:
-        name: Push Master to Production
-        command: |
-          git push https://github.com/karilyn/scheduler.git maste
-          r:production
-
-
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "da:8e:c9:e6:33:bc:77:20:8c:bc:b6:1d:6e:c8:d2:ee"
+      - checkout
+      - run:
+          name: Push Master to Production
+          command: |
+            git push https://github.com/karilyn/scheduler.git master:production
 
 workflows:
   version: 2
